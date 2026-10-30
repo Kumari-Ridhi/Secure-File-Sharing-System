@@ -16,6 +16,15 @@ const cors = require("cors");
 app.use(cors());
 const PORT = process.env.PORT || 3000;
 
+// Create uploads folder if it does not exist
+const uploadDir = path.join(__dirname, "uploads");
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+console.log("Uploads directory ready:", uploadDir);
+
 app.use(express.json());
 
 // Configure where uploaded files will be stored
